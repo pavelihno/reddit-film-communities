@@ -1,0 +1,4 @@
+ipykernel
+praw
+python-dotenv
+pandas
