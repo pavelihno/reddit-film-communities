@@ -49,10 +49,15 @@ def _get_post_data(post: praw.models.Submission) -> Dict[str, Any]:
 
 
 def _get_comment_data(comment: praw.models.Comment, post_id: str, parent_id: str, parent_type: str):
+    try:
+        author_id = comment.author.id if comment.author else None,
+    except:
+        author_id = None
+
     return {
         'comment_id': comment.id,
         'post_id': post_id,
-        'author_id': comment.author.id if comment.author else None,
+        'author_id': author_id,
         'author_name': comment.author.name if comment.author else '[deleted]',
         'body': comment.body,
         'score': comment.score,

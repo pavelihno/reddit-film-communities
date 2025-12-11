@@ -4,3 +4,4 @@ pmaw
 python-dotenv
 pandas
 matplotlib
+beautifulsoup4
