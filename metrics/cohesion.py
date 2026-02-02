@@ -87,7 +87,6 @@ def get_cloud_word(data: pd.DataFrame, cohesion_vocab: list[str], stopwords: set
     for index, row in data.iterrows():
         if index%5000 == 4999:
             print(f"Successfully processed comment {index+1}.")
-            break
         frequencies = word_frequencies(row["body"], single_vocab, compound_vocab, stopwords)
 
         formatted_data.extend([
