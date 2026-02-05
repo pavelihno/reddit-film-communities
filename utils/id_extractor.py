@@ -15,17 +15,19 @@ def get_ids_list(file_path: str) -> list[str]:
 
     ids = []
     current_movie = ""
+    counter = 0
     for ol in soup.find_all("ol"):
-        li = ol.find_next("li")
-        if li:
+        if counter % 2 == 0:
+            li = ol.find_next("li")
             span = li.find_next("span")
-            if span and span.get("class", [""])[0] == "c5":
-                current_movie = span.text
-                continue
+            current_movie = span.text
+            counter += 1
+            continue
 
         for link in ol.find_all("a"):
             link_text = link.get("href")
             if "reddit" in link_text:
                 ids.append((extract_post_id(link_text), current_movie))
+        counter += 1
 
     return ids
